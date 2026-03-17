@@ -1,7 +1,8 @@
+import json
+import random
 from aiogram import Router, F
 from aiogram.filters import CommandStart
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
-from api import RejectionAPI
 
 
 router = Router()
@@ -28,8 +29,10 @@ async def cmd_start(message: Message):
 @router.message(F.text == "Reject me 🙅‍♂️")
 async def handle_reject_request(message: Message):
     try:
-        rejection = await RejectionAPI.get_rejection()
+        with open("reasons.json", "r", encoding="utf-8") as f:
+            rejections = json.load(f)
+        rejection = random.choice(rejections)
         await message.answer(f"{rejection}")
     except Exception as e:
         await message.answer("Oops! Even the rejection service is saying 'no' to me right now. Try again in a moment! 🔌")
-        print(f"Error fetching rejection: {e}")
+        print(f"Error reading rejections: {e}")
