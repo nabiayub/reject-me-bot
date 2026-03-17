@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     webhook_url: str = "https://your-app.koyeb.app"  # Placeholder
     webhook_path: str = "/webhook"
     app_host: str = "0.0.0.0"
-    app_port: int = 8000
+    port: int = 8000  # Automatically picks up PORT from environment (e.g., Render)
     
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 

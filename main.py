@@ -28,8 +28,8 @@ def main() -> None:
     webhook_requests_handler.register(app, path=config.webhook_path)
     setup_application(app, dp, bot=bot)
 
-    print(f"Bot starting on {config.app_host}:{config.app_port}...")
-    web.run_app(app, host=config.app_host, port=config.app_port)
+    print(f"Bot starting on {config.app_host}:{config.port}...")
+    web.run_app(app, host=config.app_host, port=config.port)
 
 
 if __name__ == "__main__":
